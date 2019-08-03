@@ -18,8 +18,8 @@ public class TrackingCamera : MonoBehaviour
     }
 
     public List<GameObject> Targets;
-
-    private Vector3 LerpTarget;
+    public bool CheckpointHit;
+    public Vector3 LerpTarget;
 
     private void Start()
     {
@@ -34,15 +34,18 @@ public class TrackingCamera : MonoBehaviour
 
     private void SetLerpTarget()
     {
-        LerpTarget = Vector3.zero;
-        if (Targets.Count > 0)
+        if (!CheckpointHit)
         {
-            foreach (GameObject target in Targets)
+            LerpTarget = Vector3.zero;
+            if (Targets.Count > 0)
             {
-                LerpTarget += target.transform.position;
+                foreach (GameObject target in Targets)
+                {
+                    LerpTarget += target.transform.position;
+                }
+                LerpTarget /= Targets.Count;
             }
-            LerpTarget /= Targets.Count;
+            LerpTarget.z = transform.position.z;
         }
-        LerpTarget.z = transform.position.z;
     }
 }
