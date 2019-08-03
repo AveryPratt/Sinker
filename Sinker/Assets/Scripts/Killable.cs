@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallKiller : MonoBehaviour
+public class Killable : MonoBehaviour
 {
     public MeshRenderer MeshRenderer;
     public Material DeadMaterial;

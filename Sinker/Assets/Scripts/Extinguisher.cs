@@ -14,7 +14,7 @@ public class Extinguisher : MonoBehaviour
         if (collision.transform.gameObject.CompareTag("ball"))
         {
             BallLight light = collision.transform.GetComponent<BallLight>();
-            BallKiller killer = collision.transform.GetComponent<BallKiller>();
+            Killable killer = collision.transform.GetComponent<Killable>();
             if (light)
             {
                 light.Extinguish();
