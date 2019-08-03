@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
             RestartTimer += Time.unscaledDeltaTime;
         }
 
-        if (RestartTimer >= 1)
+        if (RestartTimer >= 3)
         {
             EndPanel.SetActive(true);
         }

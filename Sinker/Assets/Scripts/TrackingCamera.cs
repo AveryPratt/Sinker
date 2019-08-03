@@ -17,19 +17,25 @@ public class TrackingCamera : MonoBehaviour
         }
     }
 
+    public Transform Pivot;
     public List<GameObject> Targets;
     public bool CheckpointHit;
     public Vector3 LerpTarget;
 
     private void Start()
     {
-        LerpTarget = transform.position;
+        LerpTarget = Pivot.transform.position;
+    }
+
+    private void Update()
+    {
+        transform.rotation = Quaternion.Euler(InputController.Instance.MouseWorldPosition * .01f);
     }
 
     private void FixedUpdate()
     {
         SetLerpTarget();
-        transform.position = Vector3.Lerp(transform.position, LerpTarget, Time.unscaledDeltaTime * 10);
+        Pivot.transform.position = Vector3.Lerp(Pivot.transform.position, LerpTarget, Time.unscaledDeltaTime * 10);
     }
 
     private void SetLerpTarget()
@@ -44,7 +50,7 @@ public class TrackingCamera : MonoBehaviour
                     LerpTarget += target.transform.position;
                 }
                 LerpTarget /= Targets.Count;
-                LerpTarget.z = transform.position.z;
+                LerpTarget.z = Pivot.transform.position.z;
             }
         }
     }

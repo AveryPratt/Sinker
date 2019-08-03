@@ -35,11 +35,12 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(MouseWorldPosition);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit);
         MouseWorldPosition = hit.point;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && hit.transform)
         {
             Movable movable = hit.transform.GetComponent<Movable>();
             if (movable && movable.Handle.Grab())
