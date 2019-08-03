@@ -7,7 +7,9 @@ public class Movable : MonoBehaviour
     public MeshRenderer MeshRenderer;
     public Material ReleasedMaterial;
 
+    public BoxCollider CollisionBox;
     public GameObject GrabBox;
+    public MovableHandle Handle;
 
     private bool Grabbed;
     private bool Released;
@@ -22,6 +24,7 @@ public class Movable : MonoBehaviour
     public void Release()
     {
         Released = true;
+        CollisionBox.enabled = true;
     }
 
     public bool Grab()
@@ -29,6 +32,7 @@ public class Movable : MonoBehaviour
         if (!Released)
         {
             Grabbed = true;
+            CollisionBox.enabled = false;
         }
         return Grabbed;
     }
@@ -37,7 +41,7 @@ public class Movable : MonoBehaviour
     {
         if (Grabbed)
         {
-            MeshRenderer.transform.position = InputController.Instance.MouseWorldPosition;
+            Handle.transform.position = InputController.Instance.MouseWorldPosition;
         }
         if (Released)
         {

@@ -68,7 +68,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeshRenderer: {fileID: 8329731216696100069}
   ReleasedMaterial: {fileID: 2100000, guid: 7461f4eb7e71f5b4dbaac876d5384147, type: 2}
+  CollisionBox: {fileID: 8329731216696100074}
   GrabBox: {fileID: 2625447004173860738}
+  Handle: {fileID: 5629461876767760000}
 --- !u!1 &8329731216696100075
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +83,7 @@ GameObject:
   - component: {fileID: 8329731216696100068}
   - component: {fileID: 8329731216696100069}
   - component: {fileID: 8329731216696100074}
+  - component: {fileID: 5629461876767760000}
   m_Layer: 0
   m_Name: MovableWall
   m_TagString: Untagged
@@ -161,3 +164,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5629461876767760000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8329731216696100075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3fc6c95615e9046a3aa4ac65aefd81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Movables:
+  - {fileID: 6409827243366826690}

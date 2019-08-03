@@ -49,7 +49,7 @@ public class InputController : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            GrabbedObject.Release();
+            GrabbedObject.Handle.Release();
         }
     }
 }

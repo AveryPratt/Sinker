@@ -268,3 +268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeshRenderer: {fileID: 6878235503117309146}
   DeadMaterial: {fileID: 2100000, guid: 862a82b84cfe5e047acb9a581197a461, type: 2}
+  Rigidbody: {fileID: 6878235503117309145}
+  BallLight: {fileID: 3418265228881606786}
+  MustBeActive: 1
