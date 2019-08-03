@@ -36,16 +36,16 @@ public class TrackingCamera : MonoBehaviour
     {
         if (!CheckpointHit)
         {
-            LerpTarget = Vector3.zero;
             if (Targets.Count > 0)
             {
+                LerpTarget = Vector3.zero;
                 foreach (GameObject target in Targets)
                 {
                     LerpTarget += target.transform.position;
                 }
                 LerpTarget /= Targets.Count;
+                LerpTarget.z = transform.position.z;
             }
-            LerpTarget.z = transform.position.z;
         }
     }
 }

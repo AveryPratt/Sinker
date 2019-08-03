@@ -42,7 +42,7 @@ public class InputController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Movable movable = hit.transform.GetComponent<Movable>();
-            if (movable && movable.Grab())
+            if (movable && movable.Handle.Grab())
             {
                 GrabbedObject = movable;
             }

@@ -7,7 +7,7 @@ public class Extinguisher : MonoBehaviour
     public MeshRenderer[] MeshRenderers;
     public Material DeadMaterial;
 
-    private bool Extinguished;
+    public bool Extinguished { get; private set; }
 
     private void OnCollisionEnter(Collision collision)
     {
