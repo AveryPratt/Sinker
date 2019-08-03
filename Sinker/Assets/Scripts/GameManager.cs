@@ -1,0 +1,48 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class GameManager : MonoBehaviour
+{
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (!_instance)
+            {
+                _instance = FindObjectOfType<GameManager>();
+            }
+            return _instance;
+        }
+    }
+
+    public TrackingCamera Camera;
+    public GameObject EndPanel;
+
+    private float RestartTimer;
+
+    private void Update()
+    {
+        if (Camera.Targets.Count == 0)
+        {
+            RestartTimer += Time.unscaledDeltaTime;
+        }
+
+        if (RestartTimer >= 1)
+        {
+            EndPanel.SetActive(true);
+        }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene(0);
+    }
+}

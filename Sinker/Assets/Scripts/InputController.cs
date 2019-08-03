@@ -47,7 +47,7 @@ public class InputController : MonoBehaviour
                 GrabbedObject = movable;
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if (GrabbedObject && Input.GetMouseButtonUp(0))
         {
             GrabbedObject.Handle.Release();
         }
