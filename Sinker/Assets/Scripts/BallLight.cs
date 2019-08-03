@@ -17,6 +17,7 @@ public class BallLight : MonoBehaviour
     public void Extinguish()
     {
         TargetIntensity = 0;
+        TrackingCamera.Instance.Targets.Remove(gameObject);
     }
 
     private void Update()

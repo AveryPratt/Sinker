@@ -29,8 +29,7 @@ public class TrackingCamera : MonoBehaviour
     private void FixedUpdate()
     {
         SetLerpTarget();
-
-        transform.position = Vector3.Lerp(transform.position, LerpTarget, Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, LerpTarget, Time.unscaledDeltaTime * 10);
     }
 
     private void SetLerpTarget()
