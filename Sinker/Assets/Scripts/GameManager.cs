@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void StartLvl()
     {
-        if (!Levels[Level].Started)
+        if (Levels.Length > Level && !Levels[Level].Started)
         {
             Levels[Level].StartLevel();
         }
