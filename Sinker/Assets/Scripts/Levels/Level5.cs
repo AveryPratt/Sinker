@@ -8,7 +8,10 @@ public class Level5 : LevelManager
 
     public override void StartLevel()
     {
-        transform.position = new Vector3(TrackingCamera.Instance.Targets[0].transform.position.x, transform.position.y, transform.position.z);
+        if (TrackingCamera.Instance.Targets.Count > 0)
+        {
+            transform.position = new Vector3(TrackingCamera.Instance.Targets[0].transform.position.x, transform.position.y, transform.position.z);
+        }
 
         foreach (GameObject obj in ToEnable)
         {
