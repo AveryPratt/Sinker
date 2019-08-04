@@ -11,8 +11,9 @@ public class Movable : MonoBehaviour
     public GameObject GrabBox;
     public MovableHandle Handle;
 
-    private bool Grabbed;
-    private bool Released;
+    public bool Grabbed { get; private set; }
+    public bool Released { get; private set; }
+
     private Vector3 baseScale;
 
     private void Start()

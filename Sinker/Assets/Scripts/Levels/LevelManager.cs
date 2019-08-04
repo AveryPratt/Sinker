@@ -7,4 +7,6 @@ public abstract class LevelManager : MonoBehaviour
     public bool Started { get; protected set; }
 
     public abstract void StartLevel();
+
+    public abstract bool CheckComplete();
 }

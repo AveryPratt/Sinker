@@ -8,7 +8,7 @@ public class FadeInText : MonoBehaviour
 
     private Color FadeInColor;
     private Color FadeOutColor;
-    private bool FadeIn;
+    private bool FadingIn;
 
     private void Start()
     {
@@ -16,22 +16,22 @@ public class FadeInText : MonoBehaviour
         FadeOutColor = FadeInColor;
         FadeOutColor.a = 0;
         Text.color = FadeOutColor;
-        FadeIn = true;
+        FadingIn = false;
     }
 
     public void FadeOut()
     {
-        FadeIn = false;
+        FadingIn = false;
+    }
+
+    public void FadeIn()
+    {
+        FadingIn = true;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            FadeOut();
-        }
-
-        if (FadeIn)
+        if (FadingIn)
         {
             Text.color = Color.Lerp(Text.color, FadeInColor, Time.unscaledDeltaTime);
         }

@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
 
     public TrackingCamera Camera;
     public GameObject EndPanel;
-    public FadeInText Text1;
-    public FadeInText Text2;
     public int Level;
     public LevelManager[] Levels;
 
@@ -38,6 +36,15 @@ public class GameManager : MonoBehaviour
         {
             EndPanel.SetActive(true);
         }
+
+        if (Level > 0)
+        {
+            if (Levels[Level - 1].CheckComplete())
+            {
+                TimeManager.Instance.TargetTimeScale = 1;
+                TrackingCamera.Instance.CheckpointHit = false;
+            }
+        }
     }
 
     public void Restart()
@@ -48,16 +55,6 @@ public class GameManager : MonoBehaviour
     public void Exit()
     {
         SceneManager.LoadScene(0);
-    }
-
-    public void Checkpoint1()
-    {
-        Text1.gameObject.SetActive(true);
-    }
-
-    public void Checkpoint2()
-    {
-        Text2.gameObject.SetActive(true);
     }
 
     public void StartLvl()

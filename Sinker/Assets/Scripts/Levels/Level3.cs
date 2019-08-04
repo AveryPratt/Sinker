@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Level3 : LevelManager
 {
-    public FadeInText Text;
-
     public GameObject[] ToEnable;
 
     public override void StartLevel()
@@ -15,8 +13,11 @@ public class Level3 : LevelManager
             obj.SetActive(true);
         }
 
-        //Text.gameObject.SetActive(true);
-
         Started = true;
+    }
+
+    public override bool CheckComplete()
+    {
+        return false;
     }
 }

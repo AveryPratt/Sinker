@@ -14,8 +14,18 @@ public class Level1 : LevelManager
             obj.SetActive(true);
         }
 
-        Text.gameObject.SetActive(true);
+        Text.FadeIn();
 
         Started = true;
+    }
+
+    public override bool CheckComplete()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Text.FadeOut();
+            return true;
+        }
+        return false;
     }
 }

@@ -35,11 +35,5 @@ public class TimeManager : MonoBehaviour
             Time.timeScale = TargetTimeScale;
         }
         Time.fixedDeltaTime = Time.timeScale / 60;
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            TargetTimeScale = 1;
-            TrackingCamera.Instance.CheckpointHit = false;
-        }
     }
 }
