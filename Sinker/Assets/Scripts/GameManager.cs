@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject EndPanel;
     public int Level;
     public LevelManager[] Levels;
+    public ScrollText WarningText;
 
     private float RestartTimer;
     private bool LateUpdateTimeScale0;
@@ -68,6 +69,11 @@ public class GameManager : MonoBehaviour
         if (RestartTimer >= 3)
         {
             EndPanel.SetActive(true);
+        }
+
+        if (Time.timeSinceLevelLoad > 8 && Time.timeSinceLevelLoad < 9)
+        {
+            WarningText.gameObject.SetActive(true);
         }
 
         if (Level > 0)
