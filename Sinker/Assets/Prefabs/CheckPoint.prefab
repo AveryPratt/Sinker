@@ -120,5 +120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541aa8249a384444f811cfb27791c17b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   BoxCollider: {fileID: 4200008878756814526}
   Extinguisher: {fileID: 1966044484469324440}
+  YPos: -6
+  CameraSize: 5
+  PassMaterial: {fileID: 2100000, guid: 89327eebab0581042a2fa3e6ee0ba570, type: 2}

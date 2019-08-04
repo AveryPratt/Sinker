@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public TrackingCamera Camera;
     public GameObject EndPanel;
     public FadeInText Text1;
+    public FadeInText Text2;
+    public int Level;
+    public LevelManager[] Levels;
 
     private float RestartTimer;
 
@@ -50,5 +53,18 @@ public class GameManager : MonoBehaviour
     public void Checkpoint1()
     {
         Text1.gameObject.SetActive(true);
+    }
+
+    public void Checkpoint2()
+    {
+        Text2.gameObject.SetActive(true);
+    }
+
+    public void StartLvl()
+    {
+        if (!Levels[Level].Started)
+        {
+            Levels[Level].StartLevel();
+        }
     }
 }

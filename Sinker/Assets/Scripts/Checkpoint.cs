@@ -5,11 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Checkpoint : MonoBehaviour
 {
-    public EventTrigger.TriggerEvent Event;
     public BoxCollider BoxCollider;
     public Extinguisher Extinguisher;
     public float YPos = -6;
     public float CameraSize = 5;
+    public Material PassMaterial;
+    public Checkpoint Previous;
 
     private Vector3 CameraPos;
 
@@ -20,7 +21,18 @@ public class Checkpoint : MonoBehaviour
 
     private void Update()
     {
-        BoxCollider.isTrigger = !Extinguisher.Extinguished && TrackingCamera.Instance.Targets.Count <= 1;
+        if (!Previous || !Previous.gameObject.activeInHierarchy)
+        {
+            BoxCollider.isTrigger = !Extinguisher.Extinguished && TrackingCamera.Instance.Targets.Count <= 1;
+
+            if (BoxCollider.isTrigger && !Extinguisher.Extinguished)
+            {
+                foreach (MeshRenderer renderer in Extinguisher.MeshRenderers)
+                {
+                    renderer.material = PassMaterial;
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,8 +44,9 @@ public class Checkpoint : MonoBehaviour
             CameraPos.x = TrackingCamera.Instance.LerpTarget.x;
             TrackingCamera.Instance.LerpTarget = CameraPos;
             TrackingCamera.Instance.ZoomLerpTarget = CameraSize;
-
-            Event.Invoke(new BaseEventData(EventSystem.current));
+            GameManager.Instance.StartLvl();
+            GameManager.Instance.Level += 1;
+            gameObject.SetActive(false);
         }
     }
 }
