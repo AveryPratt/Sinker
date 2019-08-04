@@ -40,17 +40,17 @@ public class GameManager : MonoBehaviour
             TrackingCamera.Instance.Targets[1].SetActive(false);
             TrackingCamera.Instance.Pivot.transform.position = new Vector3(Levels[Level].StartPos.x, Levels[Level].StartPos.y, TrackingCamera.Instance.Pivot.transform.position.z);
             TrackingCamera.Instance.Targets[0].transform.position = Levels[Level].StartPos;
-            for (int i = 0; i < Level + 1; i++)
-            {
-                Levels[i].Checkpoint.Previous.gameObject.SetActive(false);
-            }
+            Vector3 CameraPos = Levels[Level].Checkpoint.Previous.LerpCameraX();
             StartLvl();
 
             LateUpdateTimeScale0 = true;
             TrackingCamera.Instance.CheckpointHit = true;
-            Vector3 CameraPos = Levels[Level].Checkpoint.Previous.LerpCameraX();
             TrackingCamera.Instance.LerpTarget = CameraPos;
             TrackingCamera.Instance.ZoomLerpTarget = Levels[Level].Checkpoint.Previous.CameraSize;
+            for (int i = 0; i < Level + 1; i++)
+            {
+                Levels[i].Checkpoint.Previous.gameObject.SetActive(false);
+            }
             Level += 1;
         }
     }

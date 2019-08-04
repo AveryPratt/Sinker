@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour
 
     private Vector3 CameraPos;
 
-    private void Start()
+    private void Awake()
     {
         CameraPos = transform.position + new Vector3(0, YPos, TrackingCamera.Instance.transform.position.z);
     }
@@ -59,6 +59,17 @@ public class Checkpoint : MonoBehaviour
             CameraPos.x += target.transform.position.x + target.GetComponent<Rigidbody>().velocity.x;
         }
         CameraPos.x /= TrackingCamera.Instance.Targets.Count;
+        return CameraPos;
+    }
+
+    public Vector3 LerpCamera()
+    {
+        Vector3 pos = Vector3.zero;
+        foreach (GameObject target in TrackingCamera.Instance.Targets)
+        {
+            CameraPos += target.transform.position + target.GetComponent<Rigidbody>().velocity;
+        }
+        CameraPos /= TrackingCamera.Instance.Targets.Count;
         return CameraPos;
     }
 }
