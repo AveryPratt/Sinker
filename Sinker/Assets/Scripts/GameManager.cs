@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
             TitleActivated = true;
         }
 
-        if (Level > 0)
+        if (Level > 0 && Level <= Levels.Length)
         {
             if (Levels[Level - 1].CheckComplete())
             {
