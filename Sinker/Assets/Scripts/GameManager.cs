@@ -23,14 +23,19 @@ public class GameManager : MonoBehaviour
     public int Level;
     public LevelManager[] Levels;
     public ScrollText WarningText;
+    public TitleText TitleText;
 
     private float RestartTimer;
     private bool LateUpdateTimeScale0;
+    private bool WarningActivated;
+    private bool TitleActivated;
+    private bool Skipped;
 
     private void Start()
     {
         if (DataController.Instance && DataController.Instance.LevelToLoad > 0)
         {
+            Skipped = true;
             Level = DataController.Instance.LevelToLoad;
             TrackingCamera.Instance.Targets[1].SetActive(false);
             TrackingCamera.Instance.Pivot.transform.position = new Vector3(Levels[Level].StartPos.x, Levels[Level].StartPos.y, TrackingCamera.Instance.Pivot.transform.position.z);
@@ -71,9 +76,16 @@ public class GameManager : MonoBehaviour
             EndPanel.SetActive(true);
         }
 
-        if (Time.timeSinceLevelLoad > 8 && Time.timeSinceLevelLoad < 9)
+        if (Time.timeSinceLevelLoad > 8 && !WarningActivated && !Skipped)
         {
             WarningText.gameObject.SetActive(true);
+            WarningActivated = true;
+        }
+
+        if (Time.timeSinceLevelLoad > 14.2 && !TitleActivated && !Skipped)
+        {
+            TitleText.gameObject.SetActive(true);
+            TitleActivated = true;
         }
 
         if (Level > 0)
@@ -100,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene(0);
+        Application.Quit();
     }
 
     public void StartLvl()

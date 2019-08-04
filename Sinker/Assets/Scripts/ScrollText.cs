@@ -13,14 +13,14 @@ public class ScrollText : MonoBehaviour
 
     private void OnEnable()
     {
-        RectPos.y = 100;
+        RectPos.y = 400;
         Timer = 0;
     }
 
     private void Start()
     {
         RectTransform = GetComponent<RectTransform>();
-        RectPos = new Vector3(400, 100, 0);
+        RectPos = new Vector3(1000, 400, 0);
         TextColor = Text.color;
     }
 
@@ -29,7 +29,7 @@ public class ScrollText : MonoBehaviour
         RectPos.y += Time.deltaTime * 100;
         RectTransform.position = RectPos;
         Timer += Time.deltaTime;
-        float alpha = (200 - Mathf.Abs(RectPos.y - 300)) / 200;
+        float alpha = (200 - Mathf.Abs(RectPos.y - 600)) / 200;
         TextColor.a = alpha;
         Text.color = TextColor;
         if (Timer > 4)

@@ -30,11 +30,13 @@ public class InputController : MonoBehaviour
             _mouseWorldPosition = value;
         }
     }
+    public Vector3 LastMousePos { get; private set; }
 
     public Movable GrabbedObject { get; set; }
 
     private void Update()
     {
+        LastMousePos = MouseWorldPosition;
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit);

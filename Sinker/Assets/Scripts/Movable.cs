@@ -41,7 +41,8 @@ public class Movable : MonoBehaviour
     {
         if (Grabbed)
         {
-            Handle.transform.position = InputController.Instance.MouseWorldPosition;
+            Handle.transform.position += InputController.Instance.MouseWorldPosition;
+            Handle.transform.position -= InputController.Instance.LastMousePos;
         }
         if (Released)
         {
