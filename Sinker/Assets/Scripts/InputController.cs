@@ -35,7 +35,6 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(MouseWorldPosition);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit);

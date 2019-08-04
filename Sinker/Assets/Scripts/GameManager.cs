@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public TrackingCamera Camera;
     public GameObject EndPanel;
+    public FadeInText Text1;
 
     private float RestartTimer;
 
@@ -44,5 +45,10 @@ public class GameManager : MonoBehaviour
     public void Exit()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void Checkpoint1()
+    {
+        Text1.gameObject.SetActive(true);
     }
 }

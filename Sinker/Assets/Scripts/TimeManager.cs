@@ -28,13 +28,13 @@ public class TimeManager : MonoBehaviour
     {
         if (TargetTimeScale < Time.timeScale)
         {
-            float newScale = Time.timeScale - Time.unscaledDeltaTime;
-            Time.timeScale = newScale >= 0 ? newScale : 0;
+            Time.timeScale = Mathf.Lerp(Time.timeScale, 0, Time.unscaledDeltaTime);
         }
         if (TargetTimeScale > Time.timeScale)
         {
             Time.timeScale = TargetTimeScale;
         }
+        Debug.Log(Time.fixedDeltaTime);
         Time.fixedDeltaTime = Time.timeScale / 60;
 
         if (Input.GetKey(KeyCode.Space))
