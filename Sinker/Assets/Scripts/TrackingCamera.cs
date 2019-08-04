@@ -17,10 +17,22 @@ public class TrackingCamera : MonoBehaviour
         }
     }
 
+    private bool _checkpointHit;
+    public bool CheckpointHit
+    {
+        get
+        {
+            return _checkpointHit;
+        }
+        set
+        {
+            _checkpointHit = value;
+        }
+    }
+
     public Camera Camera;
     public Transform Pivot;
     public List<GameObject> Targets;
-    public bool CheckpointHit;
     public Vector3 LerpTarget;
     public float ZoomLerpTarget;
 
@@ -28,11 +40,6 @@ public class TrackingCamera : MonoBehaviour
     {
         LerpTarget = Pivot.transform.position;
         ZoomLerpTarget = 5;
-    }
-
-    private void Update()
-    {
-        transform.rotation = Quaternion.Euler(InputController.Instance.MouseWorldPosition * .01f);
     }
 
     private void FixedUpdate()

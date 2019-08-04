@@ -39,14 +39,25 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ball"))
         {
-            TimeManager.Instance.TargetTimeScale = 0;
-            TrackingCamera.Instance.CheckpointHit = true;
-            CameraPos.x = TrackingCamera.Instance.LerpTarget.x;
-            TrackingCamera.Instance.LerpTarget = CameraPos;
-            TrackingCamera.Instance.ZoomLerpTarget = CameraSize;
             GameManager.Instance.StartLvl();
             GameManager.Instance.Level += 1;
+
+            TimeManager.Instance.TargetTimeScale = 0;
+            TrackingCamera.Instance.CheckpointHit = true;
+            LerpCameraX();
+            TrackingCamera.Instance.LerpTarget = CameraPos;
+            TrackingCamera.Instance.ZoomLerpTarget = CameraSize;
             gameObject.SetActive(false);
         }
+    }
+
+    private void LerpCameraX()
+    {
+        CameraPos.x = 0;
+        foreach (GameObject target in TrackingCamera.Instance.Targets)
+        {
+            CameraPos.x += target.transform.position.x + target.GetComponent<Rigidbody>().velocity.x;
+        }
+        CameraPos.x /= TrackingCamera.Instance.Targets.Count;
     }
 }

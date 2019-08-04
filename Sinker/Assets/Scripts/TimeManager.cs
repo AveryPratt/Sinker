@@ -34,7 +34,6 @@ public class TimeManager : MonoBehaviour
         {
             Time.timeScale = TargetTimeScale;
         }
-        Debug.Log(Time.fixedDeltaTime);
         Time.fixedDeltaTime = Time.timeScale / 60;
 
         if (Input.GetKey(KeyCode.Space))

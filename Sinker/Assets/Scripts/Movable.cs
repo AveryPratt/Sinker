@@ -13,12 +13,14 @@ public class Movable : MonoBehaviour
 
     private bool Grabbed;
     private bool Released;
+    private Vector3 baseScale;
 
     private void Start()
     {
         float grabBoxScaleX = MeshRenderer.transform.localScale.x + 1 / MeshRenderer.transform.localScale.x;
         float grabBoxScaleY = MeshRenderer.transform.localScale.y + 1 / MeshRenderer.transform.localScale.y;
         transform.localScale = new Vector3(grabBoxScaleX, grabBoxScaleY, 2);
+        baseScale = MeshRenderer.transform.localScale;
     }
 
     public void Release()
@@ -46,7 +48,15 @@ public class Movable : MonoBehaviour
         if (Released)
         {
             Grabbed = false;
-            MeshRenderer.material.Lerp(MeshRenderer.material, ReleasedMaterial, Time.deltaTime);
+            MeshRenderer.material.Lerp(MeshRenderer.material, ReleasedMaterial, Time.unscaledDeltaTime);
+        }
+        if (!Grabbed && !Released)
+        {
+            MeshRenderer.transform.localScale = baseScale * (1.25f + (1 - Time.timeScale) * Mathf.Sin(Time.unscaledTime * 6) * .25f - .25f * Time.timeScale);
+        }
+        else
+        {
+            MeshRenderer.transform.localScale = baseScale;
         }
     }
 }
