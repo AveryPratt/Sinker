@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class LevelManager : MonoBehaviour
 {
+    public Vector3 StartPos;
+    public Checkpoint Checkpoint;
+
     public bool Started { get; protected set; }
 
     public abstract void StartLevel();

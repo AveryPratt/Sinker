@@ -19,6 +19,7 @@ public class MusicController : MonoBehaviour
 
     public AudioSource MultipleBallsAudio;
     public AudioSource UnderWaterAudio;
+    public AudioLowPassFilter LowPassFilter;
 
     private float MultipleBallsTargetVolume;
 
@@ -31,6 +32,10 @@ public class MusicController : MonoBehaviour
     {
         if (TrackingCamera.Instance != null)
         {
+            if (Time.timeSinceLevelLoad > 6)
+            {
+                LowPassFilter.cutoffFrequency = Mathf.Lerp(LowPassFilter.cutoffFrequency, 200, Time.unscaledDeltaTime);
+            }
             if (!MultipleBallsAudio.isPlaying && Time.timeSinceLevelLoad > 10.8)
             {
                 MultipleBallsAudio.Play();

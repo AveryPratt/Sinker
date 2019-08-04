@@ -8,8 +8,8 @@ public class Level2 : LevelManager
     public FadeInText Text2;
     public GameObject[] ToEnable;
     public Movable ObjectToDrop;
-
-    private bool HitSpace;
+    
+    private bool SpacePressed;
 
     public override void StartLevel()
     {
@@ -27,12 +27,16 @@ public class Level2 : LevelManager
     {
         if (ObjectToDrop.Released)
         {
-            Text1.FadeOut();
-            Text2.FadeIn();
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!SpacePressed)
             {
-                Text2.FadeOut();
-                return true;
+                Text1.FadeOut();
+                Text2.FadeIn();
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Text2.FadeOut();
+                    SpacePressed = true;
+                    return true;
+                }
             }
         }
         return false;
